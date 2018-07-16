@@ -1,0 +1,106 @@
+//
+// Component
+// ui-input
+//
+
+$ui-input-label-height: 20px;
+$ui-input-input-height: 30px;
+$ui-input-height: $ui-input-label-height + $ui-input-input-height;
+
+ui-input {
+    display: block;
+    width: 200px;
+    height: $ui-input-height;
+    position: relative;
+    text-align: left;
+}
+
+
+// Label
+
+ui-input
+label {
+    display: block;
+    height: $ui-input-label-height;
+    margin: 0;
+
+    line-height: $ui-input-label-height;
+    color: gs(20%);
+    font-size: 16px;
+
+    transform: translateY(22px);
+    pointer-events: none;
+    transition: transform .2s, font-size .2s;
+}
+
+ui-input
+label.offset {
+    font-size: 13px;
+    transform: translateY(0);
+}
+
+
+// Input
+
+ui-input
+input {
+    display: block;
+    width: 100%;
+    height: $ui-input-input-height;
+    padding: 0 0 5px;
+
+    outline: 0;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid gs(40%);
+    font-weight: 400;
+    font-size: 16px;
+    color: gs(20%);
+    transition: opacity .2s;
+}
+
+ui-input.ng-invalid:not(.ng-pristine)
+input {
+    border-bottom-color: red;
+}
+
+
+// Operation Status
+
+ui-input
+ui-operation-status {
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+    z-index: 2;
+}
+
+
+// Error
+
+ui-input
+.error {
+    position: absolute;
+    right: 0;
+
+    font-size: 12px;
+    color: red;
+    font-weight: 400;
+
+    pointer-events: none;
+}
+
+ui-input.ng-pristine
+.error {
+    display: none;
+}
+
+
+// Vendor Workaround - Chrome - Autofill Background
+// Set autofill background color from yellow to white,
+// or gray if "background-gray" class is present
+
+ui-input
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}

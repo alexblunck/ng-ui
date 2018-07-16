@@ -1,0 +1,39 @@
+//
+// Component
+// ui-spinner
+//
+
+$ui-spinner-width: 2px;
+$ui-spinner-color: gs(45%);
+
+ui-spinner {
+    $border-color: gs(0%, 0);
+
+    display: inline-block;
+    width: $ui-spinner-size;
+    height: $ui-spinner-size;
+
+    border-top: $ui-spinner-width solid $border-color;
+    border-right: $ui-spinner-width solid $border-color;
+    border-bottom: $ui-spinner-width solid $border-color;
+    border-left: $ui-spinner-width solid $ui-spinner-color;
+    border-radius: 100%;
+
+    opacity: 0;
+
+    animation: ui-spinner-keyframes .6s infinite linear;
+    pointer-events: none;
+    transition: opacity .3s;
+
+    &.visible {
+        opacity: 1;
+    }
+}
+
+
+// Animation
+
+@keyframes ui-spinner-keyframes {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

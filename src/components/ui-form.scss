@@ -1,0 +1,41 @@
+//
+// Component
+// ui-form
+//
+
+ui-form {
+    display: block;
+    position: relative;
+
+    &.processing {
+        pointer-events: none;
+
+        ui-input input {
+            opacity: .5;
+        }
+    }
+}
+
+
+// Error / Message
+
+ui-form {
+
+    > .error,
+    > .message {
+        width: 100%;
+        padding-top: 2px;
+        position: absolute;
+        font-size: 12px;
+        font-weight: 400;
+        text-align: center;
+    }
+
+    > .error {
+        color: $color-error-red;
+    }
+
+    > .message {
+        color: darken($color-green, 10%);
+    }
+}

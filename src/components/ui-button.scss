@@ -1,0 +1,115 @@
+//
+// Component
+// ui-button
+//
+
+$ui-button-height: 35px;
+
+ui-button {
+    display: inline-block;
+    height: $ui-button-height;
+    position: relative;
+    appearance: none !important;
+}
+
+
+// Button
+
+ui-button
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: $ui-button-height;
+    padding: 0 20px;
+
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid #bbb;
+    outline: 0;
+
+    color: #555;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: .06em;
+
+    cursor: pointer;
+    transition: background-color .15s, border-color .15s, color .15s;
+
+    &:hover {
+        border-color: #888;
+        color: #333;
+    }
+
+    &.processing {
+        pointer-events: none;
+        color: transparent !important;
+    }
+}
+
+
+// Spinner
+
+ui-button
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+// State - Disabled
+
+ui-button button.disabled,
+ui-form form.submit-disabled ui-button button {
+    &:not(.processing) {
+        background-color: transparent;
+        border-color: gs(65%);
+        color: gs(55%);
+        pointer-events: none;
+        opacity: .6;
+    }
+}
+
+// Flag - Height
+
+ui-button.height-l {
+    &, button {
+        height: 40px;
+    }
+}
+
+
+// Flag - Color
+
+@mixin ui-button-color($name, $color) {
+    ui-button.#{$name} {
+        &:not(.disabled) button,
+        &.processing button {
+            background-color: $color;
+            border-color: $color;
+            color: #fff;
+        }
+
+        &:not(.processing):not(.disabled) button:hover {
+            background-color: darken($color, 10%);
+            border-color: darken($color, 10%);
+        }
+
+        ui-spinner {
+            border-left-color: #fff;
+        }
+    }
+}
+
+@include ui-button-color('green', $color-green);
+@include ui-button-color('blue', $color-blue);

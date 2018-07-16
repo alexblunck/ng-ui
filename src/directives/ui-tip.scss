@@ -1,0 +1,37 @@
+//
+// Directive
+// ab-tip
+//
+
+.ab-tip {
+    height: 23px;
+    padding: 0 8px;
+    position: absolute;
+    top: -23px - 6px;
+    left: 0;
+
+    border-radius: 4px;
+    background-color: gs(25%);
+
+    line-height: 23px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #fff;
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(5px);
+    transition: opacity .2s, visibility .2s, transform .2s;
+    pointer-events: none;
+
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    &.disabled {
+        display: none;
+    }
+}
