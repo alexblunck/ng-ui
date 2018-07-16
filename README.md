@@ -6,3 +6,19 @@ AngularJs component library
 
 ## Installation
 `npm i @blunck/ng-ui`
+
+## Usage
+Import AngularJs module
+```js
+import ngUi from '@blunck/ng-ui'
+
+angular
+    .module('app', [
+        ngUi
+    ])
+```
+
+Import styles in your scss
+```scss
+@import '@blunck/ng-ui/src/index.scss';
+```
