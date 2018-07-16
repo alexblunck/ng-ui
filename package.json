@@ -4,7 +4,6 @@
   "description": "AngularJs component library",
   "main": "lib/blunck-ng-ui.js",
   "files": [
-    "lib/blunck-ng-ui.css",
     "src/**/*.scss"
   ],
   "scripts": {
