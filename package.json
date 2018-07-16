@@ -4,7 +4,8 @@
   "description": "AngularJs component library",
   "main": "lib/blunck-ng-ui.js",
   "files": [
-    "src/index.scss"
+    "lib/blunck-ng-ui.css",
+    "src/**/*.scss"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
