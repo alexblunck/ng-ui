@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/alexblunck/ng-ui#readme",
   "dependencies": {
+    "@blunck/sass": "0.1.0",
     "angular": "^1.7.2",
     "lodash": "^4.17.10"
   },
