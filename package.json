@@ -1,6 +1,6 @@
 {
   "name": "@blunck/ng-ui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "AngularJs component library",
   "main": "lib/blunck-ng-ui.js",
   "files": [
@@ -16,7 +16,9 @@
     "type": "git",
     "url": "git+https://github.com/alexblunck/ng-ui.git"
   },
-  "keywords": ["angularjs"],
+  "keywords": [
+    "angularjs"
+  ],
   "author": "Alexander Blunck",
   "license": "MIT",
   "bugs": {
