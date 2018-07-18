@@ -1,5 +1,6 @@
 const angular = window.angular
 
+import uiDeferTransition from './directives/ui-defer-transition'
 import uiTip from './directives/ui-tip'
 
 import uiButton from './components/ui-button'
@@ -11,6 +12,7 @@ import uiSpinner from './components/ui-spinner'
 
 export default angular
     .module('@blunck/ng-ui', [])
+    .directive({ uiDeferTransition })
     .directive({ uiTip })
     .component({ uiButton })
     .component({ uiForm })
