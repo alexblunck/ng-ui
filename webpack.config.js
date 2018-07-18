@@ -28,7 +28,9 @@ module.exports = function (env, argv) {
         plugins,
         externals: [
             'angular',
-            'lodash'
+            'lodash',
+            'perfect-scrollbar',
+            'zenscroll'
         ]
     }
 }
