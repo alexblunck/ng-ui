@@ -1,27 +1,11 @@
 const path = require('path')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = function (env, argv) {
-    let devtool, sassLoaders = [], plugins = []
+    let devtool, plugins = []
 
     // Development
     if (argv.mode === 'development') {
         devtool = 'sourcemap'
-    }
-    // Production
-    else if (argv.mode === 'production') {
-        sassLoaders = [
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-            'postcss-loder',
-            'sass-loader'
-        ]
-
-        plugins.push(
-            new MiniCssExtractPlugin({
-                filename: 'blunck-ng-ui.css'
-            })
-        )
     }
 
     return {
@@ -38,11 +22,6 @@ module.exports = function (env, argv) {
                     test: /\.js$/,
                     exclude: /node_modules/,
                     use: 'babel-loader'
-                },
-                {
-                    test: /\.scss$/,
-                    exclude: /node_modules/,
-                    use: sassLoaders
                 }
             ]
         },
