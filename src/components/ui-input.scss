@@ -40,10 +40,42 @@ label.offset {
 }
 
 
+// Input Container
+
+ui-input
+.input-container {
+    display: flex;
+    white-space: nowrap;
+    border-bottom: 1px solid gs(40%);
+    cursor: text;
+    transition: opacity .2s;
+
+    &.disabled {
+        opacity: .4;
+    }
+}
+
+ui-input.focused
+.input-container {
+    border-bottom-color: $color-blue;
+}
+
+ui-input.ng-invalid:not(.ng-pristine)
+.input-container {
+    border-bottom-color: $color-red;
+}
+
+
 // Input
 
 ui-input
 input {
+    @include placeholder {
+        color: gs(35%);
+        font-weight: 300;
+        font-style: italic;
+    }
+
     display: block;
     width: 100%;
     height: $ui-input-input-height;
@@ -52,16 +84,32 @@ input {
     outline: 0;
     border: 0;
     border-radius: 0;
-    border-bottom: 1px solid gs(40%);
+
     font-weight: 400;
     font-size: 16px;
     color: gs(20%);
     transition: opacity .2s;
 }
 
-ui-input.ng-invalid:not(.ng-pristine)
-input {
-    border-bottom-color: red;
+
+// Transclude - Left
+
+ui-input
+.ui-input-left:not(:empty) {
+    padding: 0 2px;
+    font-size: 16px;
+    line-height: $ui-input-input-height - 2px;
+    pointer-events: none;
+}
+
+
+// Transclude - Right
+
+ui-input
+.ui-input-right {
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
 }
 
 
@@ -73,6 +121,47 @@ ui-operation-status {
     right: 10px;
     bottom: 8px;
     z-index: 2;
+}
+
+
+// Suggestions
+
+ui-input
+.suggestions {
+    width: 100%;
+    max-height: calc(30px * 4);
+    position: absolute;
+    z-index: 1;
+    background: #fff;
+    border: 1px solid gs(80%);
+    border-top: 0;
+    box-shadow: 0 6px 11px 0 rgba(0, 0, 0, .05);
+    overflow-x: hidden;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: .2s opacity, .2s visibility;
+
+    .suggestion {
+        height: 30px;
+        padding: 0 10px;
+        font-size: 14px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        line-height: 30px;
+        color: #000;
+    }
+
+    .suggestion:hover {
+        background-color: gs(95%);
+    }
+}
+
+ui-input.focused
+.suggestions {
+    opacity: 1;
+    visibility: visible;
 }
 
 
@@ -97,10 +186,39 @@ ui-input.ng-pristine
 
 
 // Vendor Workaround - Chrome - Autofill Background
-// Set autofill background color from yellow to white,
-// or gray if "background-gray" class is present
+// Set autofill background color from yellow to white
 
 ui-input
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px white inset;
+    -webkit-box-shadow: 0 0 0 1000px #fff inset;
+}
+
+// Vendor Workaround - Webkit - Number Type Spinner
+// Only show on hover
+
+ui-input {
+    input[type=number]:not(:hover)::-webkit-inner-spin-button,
+    input[type=number]:not(:hover)::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
+
+// Vendor Workaround - Firefox - Number Type Spinner
+// Only show on hover
+
+ui-input
+input[type=number]:not(:hover) {
+    -moz-appearance:textfield;
+}
+
+
+// Flag - No Label
+
+ui-input.no-label {
+    height: $ui-input-input-height;
+
+    label {
+        display: none;
+    }
 }
