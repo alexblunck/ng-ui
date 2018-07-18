@@ -1,6 +1,6 @@
 /**
  * Directive
- * <any ui-tip="{expression}">
+ * <any ui-tip="{Expression}">
  */
 
 const angular = window.angular
