@@ -43,6 +43,7 @@ class uiInputCtrl {
 
         this.uiInputInterface = {
             validate: this.validate.bind(this),
+            isValid: this.isValid.bind(this),
             focus: this.focus.bind(this),
             setError: this.setError.bind(this)
         }
@@ -152,6 +153,15 @@ class uiInputCtrl {
             this.runSyncCheck()
         }
 
+        return this.ngModelCtrl.$valid
+    }
+
+    /**
+     * Return true if model value is considered valid.
+     *
+     * @return {Boolean}
+     */
+    isValid() {
         return this.ngModelCtrl.$valid
     }
 
@@ -289,8 +299,8 @@ class uiInputCtrl {
                 this.ngModelCtrl.$setPristine(true)
             })
             .catch(res => {
-                if (res.status === 422 && res.data.value) {
-                    this.syncError = res.data.value[0]
+                if (res.status === 422 && res.data.errors) {
+                    this.syncError = res.data.errors.value[0]
                 }
 
                 this.processing = false
@@ -377,6 +387,10 @@ class uiInputCtrl {
      */
     handleChange() {
         this.ngModelCtrl.$setViewValue(this.modelValue)
+
+        if (this.onChange) {
+            this.onChange()
+        }
     }
 
     /**
@@ -549,7 +563,8 @@ export default {
         sync: '&?',
         disabled: '<?',
         _focus: '<?focus',
-        suggestions: '<?'
+        suggestions: '<?',
+        onChange: '&?'
     },
     transclude: {
         left: '?uiInputLeft',
