@@ -7,7 +7,7 @@
     "src/**/*.scss"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"No test specified\" && exit 0",
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
     "prepare": "npm run build"
