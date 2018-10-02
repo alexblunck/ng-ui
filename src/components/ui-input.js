@@ -516,6 +516,7 @@ const template = function($attrs) {
                 placeholder="${$attrs.placeholder}"
                 translate-attr="${`{ placeholder: '${$attrs.placeholder}' }`}"
                 ` : ''}
+                translate-values="$ctrl.placeholderTranslateValues"
                 ${$attrs.name ? `name="{{ $ctrl.name }}"` : ''}
                 ${autocomplete ? `autocomplete="${autocomplete}"` : ''}
                 ${'noSpellcheck' in $attrs ? 'spellcheck="false"' : ''}
@@ -550,6 +551,7 @@ export default {
     bindings: {
         label: '@?',
         placeholder: '@?',
+        placeholderTranslateValues: '<?',
         type: '@?',
         name: '@?',
         autocomplete: '@?',
