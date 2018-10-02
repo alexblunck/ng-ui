@@ -28,7 +28,6 @@
   "dependencies": {
     "@blunck/sass": "0.2.2",
     "angular": "^1.7.2",
-    "lodash": "^4.17.10",
     "perfect-scrollbar": "^1.4.0",
     "zenscroll": "^4.0.2"
   },

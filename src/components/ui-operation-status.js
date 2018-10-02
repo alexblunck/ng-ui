@@ -3,7 +3,7 @@
  * ui-operation-status
  */
 
-import { debounce } from 'lodash'
+import { debounce } from '../utils'
 
 class uiOperationStatusCtrl {
 
