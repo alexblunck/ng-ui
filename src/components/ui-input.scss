@@ -15,11 +15,9 @@ ui-input {
     text-align: left;
 }
 
-
 // Label
 
-ui-input
-label {
+ui-input label {
     display: block;
     height: $ui-input-label-height;
     margin: 0;
@@ -30,46 +28,39 @@ label {
 
     transform: translateY(22px);
     pointer-events: none;
-    transition: transform .2s, font-size .2s;
+    transition: transform 0.2s, font-size 0.2s;
 }
 
-ui-input
-label.offset {
+ui-input label.offset {
     font-size: 13px;
     transform: translateY(0);
 }
 
-
 // Input Container
 
-ui-input
-.input-container {
+ui-input .input-container {
     display: flex;
     white-space: nowrap;
     border-bottom: 1px solid gs(40%);
     cursor: text;
-    transition: opacity .2s;
+    transition: opacity 0.2s;
 
     &.disabled {
-        opacity: .4;
+        opacity: 0.4;
     }
 }
 
-ui-input.focused
-.input-container {
+ui-input.focused .input-container {
     border-bottom-color: $color-blue;
 }
 
-ui-input.ng-invalid:not(.ng-pristine)
-.input-container {
+ui-input.ng-invalid:not(.ng-pristine) .input-container {
     border-bottom-color: $color-red;
 }
 
-
 // Input
 
-ui-input
-input {
+ui-input input {
     @include placeholder {
         color: gs(35%);
         font-weight: 300;
@@ -82,53 +73,45 @@ input {
     padding: 0 0 5px;
 
     background-color: transparent;
-    outline: 0;
+    outline: 0 !important;
     border: 0;
     border-radius: 0;
 
     font-weight: 400;
     font-size: 16px;
     color: gs(20%);
-    transition: opacity .2s;
+    transition: opacity 0.2s;
 }
-
 
 // Transclude - Left
 
-ui-input
-.ui-input-left:not(:empty) {
+ui-input .ui-input-left:not(:empty) {
     padding: 0 2px;
     font-size: 16px;
     line-height: $ui-input-input-height - 2px;
     pointer-events: none;
 }
 
-
 // Transclude - Right
 
-ui-input
-.ui-input-right {
+ui-input .ui-input-right {
     position: absolute;
     right: 10px;
     bottom: 8px;
 }
 
-
 // Operation Status
 
-ui-input
-ui-operation-status {
+ui-input ui-operation-status {
     position: absolute;
     right: 10px;
     bottom: 8px;
     z-index: 2;
 }
 
-
 // Suggestions
 
-ui-input
-.suggestions {
+ui-input .suggestions {
     width: 100%;
     max-height: calc(30px * 4);
     position: absolute;
@@ -136,12 +119,12 @@ ui-input
     background: #fff;
     border: 1px solid gs(80%);
     border-top: 0;
-    box-shadow: 0 6px 11px 0 rgba(0, 0, 0, .05);
+    box-shadow: 0 6px 11px 0 rgba(0, 0, 0, 0.05);
     overflow-x: hidden;
     overflow-y: auto;
     opacity: 0;
     visibility: hidden;
-    transition: .2s opacity, .2s visibility;
+    transition: 0.2s opacity, 0.2s visibility;
 
     .suggestion {
         height: 30px;
@@ -159,17 +142,14 @@ ui-input
     }
 }
 
-ui-input.focused
-.suggestions {
+ui-input.focused .suggestions {
     opacity: 1;
     visibility: visible;
 }
 
-
 // Error
 
-ui-input
-.error {
+ui-input .error {
     position: absolute;
     right: 0;
 
@@ -180,17 +160,14 @@ ui-input
     pointer-events: none;
 }
 
-ui-input.ng-pristine
-.error {
+ui-input.ng-pristine .error {
     display: none;
 }
-
 
 // Vendor Workaround - Chrome - Autofill Background
 // Set autofill background color from yellow to white
 
-ui-input
-input:-webkit-autofill {
+ui-input input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px #fff inset;
 }
 
@@ -198,8 +175,8 @@ input:-webkit-autofill {
 // Only show on hover
 
 ui-input {
-    input[type=number]:not(:hover)::-webkit-inner-spin-button,
-    input[type=number]:not(:hover)::-webkit-outer-spin-button {
+    input[type='number']:not(:hover)::-webkit-inner-spin-button,
+    input[type='number']:not(:hover)::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
@@ -208,11 +185,9 @@ ui-input {
 // Vendor Workaround - Firefox - Number Type Spinner
 // Only show on hover
 
-ui-input
-input[type=number]:not(:hover) {
-    -moz-appearance:textfield;
+ui-input input[type='number']:not(:hover) {
+    -moz-appearance: textfield;
 }
-
 
 // Flag - No Label
 
