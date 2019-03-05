@@ -4,14 +4,23 @@
  */
 
 class uiInputCtrl {
-
     /* @ngInject */
-    constructor($scope, $element, $attrs, $transclude, $timeout, $injector, $log) {
+    constructor(
+        $scope,
+        $element,
+        $attrs,
+        $transclude,
+        $timeout,
+        $injector,
+        $log
+    ) {
         this.$scope = $scope
         this.$attrs = $attrs
         this.$timeout = $timeout
         this.$log = $log
-        this.$translate = $injector.has('$translate') ? $injector.get('$translate') : null
+        this.$translate = $injector.has('$translate')
+            ? $injector.get('$translate')
+            : null
 
         this.ngModelCtrl = $element.controller('ngModel')
         this.uiFormCtrl = $element.controller('uiForm')
@@ -48,7 +57,11 @@ class uiInputCtrl {
             setError: this.setError.bind(this)
         }
 
-        $scope.$watch(() => this.ngModelCtrl.$error, this.handleErrorChange.bind(this), true)
+        $scope.$watch(
+            () => this.ngModelCtrl.$error,
+            this.handleErrorChange.bind(this),
+            true
+        )
 
         this.handleKeyUp = this.handleKeyUp.bind(this)
     }
@@ -68,7 +81,10 @@ class uiInputCtrl {
 
         // Email validator
         if (this.type === 'email') {
-            const pattern = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$', 'i')
+            const pattern = new RegExp(
+                '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$',
+                'i'
+            )
 
             this.ngModelCtrl.$validators.email = () => {
                 return pattern.test(this.modelValue)
@@ -239,21 +255,26 @@ class uiInputCtrl {
         const promise = this.asyncCheck()
 
         if (!promise || !promise.then) {
-            this.$log.warn('ui-input@asyncCheck: Executed expression has to return a promise.')
+            this.$log.warn(
+                'ui-input@asyncCheck: Executed expression has to return a promise.'
+            )
             return
         }
 
         // Set model validity when promise resolves
-        promise
-            .then(res => {
-                this.processing = false
+        promise.then(res => {
+            this.processing = false
 
-                const tip = this.$translate ? 'ACTION.RETRY' : 'Retry'
+            const tip = this.$translate ? 'ACTION.RETRY' : 'Retry'
 
-                this.uiOperationStatus.finish(res.valid, tip, this.runAsyncCheck.bind(this))
+            this.uiOperationStatus.finish(
+                res.valid,
+                tip,
+                this.runAsyncCheck.bind(this)
+            )
 
-                this.ngModelCtrl.$setValidity('check', res.valid)
-            })
+            this.ngModelCtrl.$setValidity('check', res.valid)
+        })
     }
 
     /**
@@ -283,7 +304,9 @@ class uiInputCtrl {
         const promise = this.sync()
 
         if (!promise || !promise.then) {
-            this.$log.warn('ui-input@sync: Executed expression has to return a promise.')
+            this.$log.warn(
+                'ui-input@sync: Executed expression has to return a promise.'
+            )
             return
         }
 
@@ -307,7 +330,11 @@ class uiInputCtrl {
 
                 const tip = this.$translate ? 'ACTION.RETRY' : 'Retry'
 
-                this.uiOperationStatus.finish(false, tip, this.runSync.bind(this))
+                this.uiOperationStatus.finish(
+                    false,
+                    tip,
+                    this.runSync.bind(this)
+                )
                 this.ngModelCtrl.$setValidity('sync', false)
             })
     }
@@ -354,10 +381,11 @@ class uiInputCtrl {
      * @param {Event} event
      */
     handleKeyUp(event) {
+        // Blur input on enter button key up & let handleBlur take care of
+        // the rest
         if (this.sync && event.code === 'Enter') {
             event.stopPropagation()
             document.activeElement.blur()
-            this.sync()
         }
     }
 
@@ -408,7 +436,9 @@ class uiInputCtrl {
             const length = this.$attrs.minlength
 
             if (this.$translate) {
-                this.error = this.$translate.instant('ERROR.MINLENGTH', { length })
+                this.error = this.$translate.instant('ERROR.MINLENGTH', {
+                    length
+                })
             } else {
                 this.error = `${length} or more characters`
             }
@@ -418,9 +448,13 @@ class uiInputCtrl {
             const length = this.$attrs.maxlength
 
             if (this.$translate) {
-                this.error = this.$translate.instant('ERROR.MAXLENGTH', { length })
+                this.error = this.$translate.instant('ERROR.MAXLENGTH', {
+                    length
+                })
             } else {
-                this.error = this.$translate ? 'ERROR.INVALID_EMAIL' : 'Invalid email'
+                this.error = this.$translate
+                    ? 'ERROR.INVALID_EMAIL'
+                    : 'Invalid email'
             }
         }
         // Email
@@ -433,7 +467,9 @@ class uiInputCtrl {
         }
         // Match
         else if ($error.match) {
-            this.error = this.$translate ? 'ERROR.FIELD_MISMATCH' : 'Fields don\'t match'
+            this.error = this.$translate
+                ? 'ERROR.FIELD_MISMATCH'
+                : "Fields don't match"
         }
         // Check
         else if ($error.check) {
@@ -448,7 +484,9 @@ class uiInputCtrl {
             if (this.syncError) {
                 this.error = this.syncError
             } else {
-                this.error = this.$translate ? 'ERROR.SYNC_FAILED' : 'Sync failed'
+                this.error = this.$translate
+                    ? 'ERROR.SYNC_FAILED'
+                    : 'Sync failed'
             }
         }
         // Custom
@@ -460,7 +498,6 @@ class uiInputCtrl {
             this.error = null
         }
     }
-
 }
 
 /* @ngInject */
@@ -485,7 +522,8 @@ const template = function($attrs) {
         autocomplete = 'off'
     }
 
-    const needsStatus = 'sync' in $attrs || 'syncCheck' in $attrs || 'asyncCheck' in $attrs
+    const needsStatus =
+        'sync' in $attrs || 'syncCheck' in $attrs || 'asyncCheck' in $attrs
 
     return `
         <!-- Label -->
@@ -512,10 +550,14 @@ const template = function($attrs) {
                 ng-blur="$ctrl.handleBlur()"
                 ng-change="$ctrl.handleChange()"
                 ng-disabled="$ctrl.disabled"
-                ${$attrs.placeholder ? `
+                ${
+                    $attrs.placeholder
+                        ? `
                 placeholder="${$attrs.placeholder}"
                 translate-attr="${`{ placeholder: '${$attrs.placeholder}' }`}"
-                ` : ''}
+                `
+                        : ''
+                }
                 translate-values="$ctrl.placeholderTranslateValues"
                 ${$attrs.name ? `name="{{ $ctrl.name }}"` : ''}
                 ${autocomplete ? `autocomplete="${autocomplete}"` : ''}
@@ -527,7 +569,11 @@ const template = function($attrs) {
         </div>
 
         <!-- Operation Status -->
-        ${needsStatus ? '<ui-operation-status interface="$ctrl.uiOperationStatus"></ui-operation-status>' : ''}
+        ${
+            needsStatus
+                ? '<ui-operation-status interface="$ctrl.uiOperationStatus"></ui-operation-status>'
+                : ''
+        }
 
         <!-- Suggestions -->
         <div class="suggestions" ng-if="$ctrl.suggestions" ui-scrollbar="$ctrl.scrollbar">
