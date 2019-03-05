@@ -1,6 +1,6 @@
 {
   "name": "@blunck/ng-ui",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "description": "AngularJs component library",
   "main": "lib/blunck-ng-ui.js",
   "files": [
