@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/alexblunck/ng-ui#readme",
   "dependencies": {
-    "@blunck/sass": "0.2.4",
+    "@blunck/sass": "0.2.5",
     "angular": "^1.7.2",
     "perfect-scrollbar": "^1.4.0",
     "zenscroll": "^4.0.2"
